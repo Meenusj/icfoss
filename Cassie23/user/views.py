@@ -25,7 +25,25 @@ def login(request):
             return redirect('authenticate')
 
 def signup(request):
-    return render(request, 'signup.html')
+    if request.method=="POST":
+        username=request.POST["username"]
+        email=request.POST["email"]
+        password=request.POST["password"]
+        if User.objects.filter(username=username).exists():
+            messages.info(request,"Username taken")
+            return render(request, 'authenticate.html')
+        elif User.objects.filter(email=email).exists():
+            messages.info(request,'Email already taken')
+            return redirect('signup')
+        else:
+            user=User.objects.create_superuser(username=username,email=email,password=password)
+            user.save()
+            messages.info(request,"User Created Successfully")
+            auth.login(request,user)
+            return redirect("authenticate")
+    else:
+        return render(request,"home.html")
+
 
 
 
