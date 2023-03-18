@@ -1,0 +1,26 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Star rating using pure CSS</title>
+</head>
+
+<body>
+  <div class="{{ab}}">
+    {%for ab in a %}
+    <h4>{{ab}}</h4>
+    <input type="radio" id="5" name="{{ab}}" value="5" />
+    <label for="5" title="text">5 </label>
+    <input type="radio" id=" 4" name="{{ab}}" value="4" />
+    <label for=" 4" title="text">4 </label>
+    <input type="radio" id=" 3" name="{{ab}}" value="3" />
+    <label for=" 3" title="text">3 </label>
+    <input type="radio" id=" 2" name="{{ab}}" value="2" />
+    <label for=" 2" title="text">2 </label>
+    <input type="radio" id=" 1" name="{{ab}}" value="1" />
+    <label for=" 1" title="text">1 </label>
+    {% endfor %}
+</body>
+
+</html>
