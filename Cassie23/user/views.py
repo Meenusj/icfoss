@@ -13,16 +13,18 @@ def authenticate(request):
 
 def login(request):
     if request.method=="POST":
-        username=request.POST['email_address']
+        username=request.POST['username']
         password=request.POST['password']
         user=auth.authenticate(username=username,password=password)
         
         if user is not None:
             auth.login(request,user)
-            return render(request, 'dashboard.html')
+            return render(request, 'dashboard.html',{'user':user})
         else:
             messages.info(request,"Invalid credentials")
             return redirect('authenticate')
+    else:
+        return render(request,"dashboard.html")
 
 def signup(request):
     if request.method=="POST":
@@ -40,16 +42,20 @@ def signup(request):
             user.save()
             messages.info(request,"User Created Successfully")
             auth.login(request,user)
-            return render(request,"dashboard.html")
+            return render(request, 'dashboard.html',{'user':user})
     else:
-        return render(request,"home.html")
+        return render(request,"signup.html")
 
 def logout(request):
     auth.logout(request)
     return redirect('/')
 
 def map(request):
-    return render(request,"map.html")
+    if request.method=="POST":
+        
+        return render(request,"map.html")
+    else:
+        return redirect("login")
     
 
 
