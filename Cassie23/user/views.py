@@ -40,9 +40,15 @@ def signup(request):
             user.save()
             messages.info(request,"User Created Successfully")
             auth.login(request,user)
-            return redirect("authenticate")
+            return render(request,"dashboard.html")
     else:
         return render(request,"home.html")
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
+
+    
 
 
 
