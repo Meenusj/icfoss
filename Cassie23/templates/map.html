@@ -53,10 +53,23 @@
 	// Bind popup to the marker with a popup
 	eiffelMarker.bindPopup("Eiffel Tower").openPopup();
     // Ask for current location and navigate to that area
-    let position = map.locate({setView: true, maxZoom: 16});
-    position.addTo(map)
-    position.bindPopup("current position").openPopup();
+    map.locate({setView: true, maxZoom: 16});
+    
 
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          position => {
+            const { latitude, longitude } = position.coords; 
+            console.log(latitude,longitude);
+            L.marker([latitude,longitude]).addTo(map)
+            .bindPopup('Current')
+            .openPopup();
+
+            // renderMap(latitude, longitude);
+        } 
+        )} 
+    
+        
 </script>
 </body>
 </html>
