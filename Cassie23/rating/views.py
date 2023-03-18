@@ -7,3 +7,5 @@ def home(request):
     "3.Did accomadation facility is easily available in there",
     "4.did the information we given was usefull"]
     return render(request, 'rating.html', {'a':a})
+
+
