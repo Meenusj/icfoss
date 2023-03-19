@@ -57,6 +57,11 @@ def map(request):
     else:
         return redirect("login")
     
+    
+def destinationInfo(request):
+    return render(request,'destinationInfo.html')
+
+        
 
 
 
