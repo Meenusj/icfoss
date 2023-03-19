@@ -71,8 +71,32 @@
     
         
 </script>
+
+
+<script>
+
+	
+	let data = JSON.parse("{{destination|escapejs}}");
+	for (let i=0;i<Object.values(data).length;i++)
+	{
+		let latitude = (Object.values(data)[i]['fields']['latitude']);
+		let longitude = (Object.values(data)[i]['fields']['longitude']);
+		let name = (Object.values(data)[i]['fields']['name']);
+		let id = (Object.values(data)[i]['fields']['id']);
+		L.marker([latitude,longitude]).addTo(map)
+        .bindPopup(name)
+        .openPopup();
+		
+	}
+		
+
+
+	
+
+		
+</script>
 <form method="get" action="login">
-    <button type="submit" value="goback"></button>
+    <button type="submit" value="goback">Go back</button>
 </form>
 </body>
 </html>

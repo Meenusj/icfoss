@@ -20,6 +20,8 @@ class Destination(models.Model):
     feeadult=models.FloatField()
     feeforeigner=models.FloatField()
     feestudent=models.FloatField()
+    latitude=models.FloatField()
+    longitude=models.FloatField()
 
 
 # class user(models.Model):

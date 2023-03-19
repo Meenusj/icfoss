@@ -1,7 +1,9 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
-
+from explore.models import Destination
+from django.core.serializers import serialize
+import json
 # Create your views here.
 
 def home(request):
@@ -52,8 +54,10 @@ def logout(request):
 
 def map(request):
     if request.method=="POST":
-        
-        return render(request,"map.html")
+        destination=Destination.objects.all()
+        destination = serialize('json', destination)
+        # json.dumps(destination)
+        return render(request,"map.html", {'destination':destination})
     else:
         return redirect("login")
     
